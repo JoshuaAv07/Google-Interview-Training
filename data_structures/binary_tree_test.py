@@ -26,17 +26,20 @@ if __name__ == '__main__':
     print()
 
     print(" SEARCH 1 ".center(50, '-'))
-    print(bst.search(bst.root(), 4))
+    node = bst.search(bst.root(), 4)
+    print(node.data if node else "Not found")
     print()
-    print(" SEARCH 2".center(50, '-'))
-    print(bst.search(bst.root(), 3))
+
+    print(" SEARCH 2 ".center(50, '-'))
+    node = bst.search(bst.root(), 3)
+    print(node.data if node else "Not found")
     print()
-    print(" SEARCH 3".center(50, '-'))
-    print(bst.search(bst.root(), 12))
+
+    print(" SEARCH 3 ".center(50, '-'))
+    node = bst.search(bst.root(), 12)
+    print(node.data if node else "Not found")
     print()
 
     bst.delete(bst.root(), 10)
-
-    print()
     print(" INORDER ".center(50, '-'))
     bst.inorder(bst.root())
