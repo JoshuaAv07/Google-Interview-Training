@@ -12,7 +12,7 @@ class BinaryTree:
         if not self._root:
             self._root = node
             self._size += 1
-            return
+            return node.data
         
         current = self._root
         
@@ -34,8 +34,10 @@ class BinaryTree:
                 # If no right child, insert the new node and break loop
                 else:
                     current.right = node
+                    break
                     
         self._size += 1
+        return node.data
             
     # Shows all numbers from the lower to the highest (including the main root)
     def inorder(self, current): 
