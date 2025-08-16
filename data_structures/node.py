@@ -27,3 +27,9 @@ class BinaryTreeNode(Node):
         super().__init__(data)
         self.left = left
         self.right = right
+        
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+    
