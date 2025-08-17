@@ -62,7 +62,7 @@ class Trie:
             # If it is, recurse to the next character
             should_delete_child = _delete(node.children[char], word, depth + 1)
             
-            # If we got a possible deletion?
+            # If we got a possible deletion
             if should_delete_child:
                 # Remove the children from the current node 
                 del node.children[char]
