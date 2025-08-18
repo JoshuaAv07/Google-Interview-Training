@@ -40,7 +40,7 @@ class WeightedGraph(DirectedGraph):
         self.adj_list[u].append((v , weight))
         
     def dijkstra(self, start):
-        # Creates a new dictionary whith the values of each of them to infinite/float('inf')
+        # Creates a new dictionary with the values of each of them to infinite/float('inf')
         distances = { v: float('inf') for v in self.adj_list }
         # Set start (the place where you want to start) as 0
         distances[start] = 0
@@ -69,4 +69,40 @@ class WeightedGraph(DirectedGraph):
                     
         return distances
     
+    # Heuristic for A* (example: 0 = Dijkstra, replace with actual heuristic for your problem)
+    def heuristic(self, u, goal):
+        return 0
         
+    def a_star(self, start, goal):
+        # Creates a new dictionary with the values of each of them to infinite/float('inf')
+        g_score = { v: float('inf') for v in self.adj_list }
+        # Set start (the place where you want to start) as 0
+        g_score[start] = 0
+        # Creates a tuple of the values of 0 and the vertex name
+        heap = [(0, start)] # -> (0, "A")
+        
+        came_from = {}
+        
+        while heap:
+            # Gets the values from the tuple the estimated goal through current, and current
+            f_current, current = heapq.heappop(heap)
+    
+            if current == goal:
+                path = []
+                
+                while current in came_from:
+                    path.append(current)
+                    current = came_from[current]
+                path.append(start)
+                path.reverse()
+                return path
+
+            for neighbor, weight in self.adj_list[current]:
+                tentative_g = g_score[current] + weight
+                if tentative_g < g_score[neighbor]:
+                    g_score[neighbor] = tentative_g
+                    f_score = tentative_g + self.heuristic(neighbor, goal)
+                    heapq.heappush(heap, (f_score, neighbor))
+                    came_from[neighbor] = current
+                    
+        return None
