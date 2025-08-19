@@ -1,8 +1,8 @@
 # Google Interview Trainig
 
-Nothing in this repository was raplicated from the actual interview.
+Nothing in this repository was replicated from the actual interview, just examples of problems from leetcode and common knowledge for a Software Engineer.
 
-Topic Covered:
+Topics Covered:
 
 1. Python Basics
 2. Data Structures
