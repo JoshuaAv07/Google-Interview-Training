@@ -1,3 +1,5 @@
+from collections import deque
+
 class Graph:
     def __init__(self):
         self.adj_list = {}
@@ -12,6 +14,34 @@ class Graph:
         for vertex in self.adj_list:
             print(vertex, "->", self.adj_list[vertex])
     
+    def bfs(self, start):
+        visited = set()
+        queue = deque([start])
+        visited.add(start)
+        
+        while queue:
+            current = queue.popleft()
+            print(current, end = ' ')
+            
+            for neighbor in self.adj_list[current]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+                    
+    def dfs(self, start):
+        visited = set()
+        
+        
+        def _dfs(vertex):
+            visited.add(vertex)
+            print(vertex, end = ' ')
+            
+            for neighbor in self.adj_list.get(vertex, []):
+                if neighbor not in visited:
+                    _dfs(neighbor)
+            
+        _dfs(start)
+        return visited
     
 class UndirectedGraph(Graph):
     def add_edge(self, u, v):
